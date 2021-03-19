@@ -1,0 +1,42 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Response from GET /tests (No Auth Required)
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <pre>{{testResponse | json}}</pre>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Response from GET /tests/version (No Auth Required)
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <pre>HTTP Response: {{test2Response | json}}</pre>
+            <pre>HTTP Headers: {{test2Headers | json}}</pre>
+            <pre>HTTP Body: {{test2Body | json}}</pre>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Response from PUT /tests/about (No Auth Required)
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <pre>HTTP Response: {{test4Response | json}}</pre>
+            <pre>HTTP Headers: {{test4Headers | json}}</pre>
+            <pre>HTTP Body: {{test4Body | json}}</pre>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

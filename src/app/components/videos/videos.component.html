@@ -1,0 +1,69 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Detected Labels (Rekognition -> Dynamo)
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-list>
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="Pick a label" aria-label="Number" matInput [formControl]="myControl"
+                        [matAutocomplete]="auto" />
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of (filteredLabels | async)" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Videos with 'that'... (Dynamo -> S3)
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-list>            
+            <button mat-raised-button color="primary" (click)="buttonListVideos($event)">List Videos</button>
+            <br /><br />
+            <mat-selection-list #videolist [multiple]="false" (click)="buttonSelectVideo($event)">
+                <mat-list-option *ngFor="let video of videos" [value]="video">
+                    {{video}}
+                </mat-list-option>
+            </mat-selection-list>
+
+            <p>
+                Video selected: {{videolist.selectedOptions.selected[0]?.value}}
+            </p>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Pre-Signed URL (S3)
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-list>
+            <textarea #txtGetVideoURL rows=8 cols="180" readonly>{{preSignedVideoURL}}</textarea><br /><br />
+
+            <button mat-raised-button color="warn" (click)="buttonGetVideo($event)">Retrieve</button><br />
+
+            <video #videoPlayer controls width="640" height="480"> 
+                <!-- <source type="video/mp4" /> -->
+                Browser not supported
+            </video>
+
+        </mat-list>
+    </mat-card-content>
+</mat-card>

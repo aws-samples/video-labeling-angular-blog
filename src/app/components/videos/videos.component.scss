@@ -1,0 +1,17 @@
+::ng-deep input.mat-input-element { color: #69F0AE;}
+::ng-deep .mat-focused .mat-form-field-label {color: #69F0AE !important;}
+::ng-deep .mat-form-field-ripple {background-color: #69F0AE !important;}
+
+.mat-input-element {
+    caret-color: #69F0AE;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+  
+.example-full-width {
+    width: 100%;
+}

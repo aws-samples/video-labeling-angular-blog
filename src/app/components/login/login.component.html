@@ -1,0 +1,45 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Cognito Login
+        </mat-card-title>
+    </mat-card-header>    
+</mat-card>
+
+<mat-card *ngIf="status=='connected'">
+    <mat-card-header>
+        <mat-card-title>
+            Access (JWT) Token
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>                                 
+            <textarea readonly>{{accessToken}}</textarea>
+        </mat-list>
+    </mat-card-content>
+
+    <mat-card-header>
+        <mat-card-title>
+            Id (JWT) Token
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>                                 
+            <textarea readonly>{{idToken}}</textarea>
+        </mat-list>
+    </mat-card-content>
+    
+    <mat-card-header>
+        <mat-card-title>
+            Refresh Token (Public Client = no token)
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>                                 
+            <textarea readonly>{{refreshToken}}</textarea>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+
+<button mat-raised-button color="primary" (click)="doLogin()" *ngIf="status=='disconnected'">Login com AWS</button>
+<button mat-raised-button color="accent" (click)="doLogout()" *ngIf="status=='connected'">Disconnect</button>

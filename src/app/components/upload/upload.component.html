@@ -1,0 +1,39 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Media Asset Upload to S3
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <!-- onchange in JS vanilla == (change) in Angular, called 'event binding' -->        
+        <br />
+        <button mat-raised-button color="primary" (click)="fileInput.click()">            
+            <span>Select File...</span>
+            <input #fileInput type="file" (change)="inputFileChange($event)" style="display:none;" />
+        </button><br />
+        <textarea #txtArquivo rows=1 cols="180" readonly>{{nomeArquivo}}</textarea>
+        <br />
+        <br />
+        <button mat-raised-button color="primary" (click)="buttonGeneratePreSignUrl($event)">Get Pre-Signed URL</button>
+        <button mat-raised-button color="warn" (click)="buttonGeneratePreSignUrlAuth($event)">Get (Auth) Pre-Signed URL</button><br />
+        <textarea #txtUrl rows=8 cols="180" readonly>{{preSignedURL}}</textarea>
+        <br />
+        <br />
+        <button mat-raised-button color="primary" (click)="buttonUploadFileToS3($event)">Upload to (WITH PRE-SIGNED URL) S3</button>        
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            Response from PUT /tests/version (without|with access token)
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <pre>HTTP Response (Status): {{httpResponseStatus | json}}</pre>
+            <pre>HTTP Response (Headers): {{httpResponseHeaders | json}}</pre>           
+        </mat-list>
+    </mat-card-content>
+</mat-card>

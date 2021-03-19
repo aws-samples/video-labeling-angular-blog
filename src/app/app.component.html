@@ -1,0 +1,71 @@
+<!--
+Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+SPDX-License-Identifier: MIT-0
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this
+software and associated documentation files (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<!-- Horizontal Bar -->
+<mat-toolbar class="mat-elevation-z4"> 
+  <span>
+    <button mat-mini-fab (click)="sidenav?.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="logo">
+      <img src="assets/aws_logo.png" width="128" height="96" alt="Logo">
+    </span>
+    <span class="title">
+      {{ title }} - {{ userInfo }}
+    </span>
+  </span>
+  <span class="spacer"></span>
+  <button class="login" mat-mini-fab (click)="login()">
+    <mat-icon>person</mat-icon>
+  </button>
+</mat-toolbar>
+
+<!-- Vertical Bar -->
+<mat-sidenav-container >
+  <mat-sidenav #sidenav mode="side" opened class="app-sidenav">
+    <!-- Sidenav Menu -->
+    <nav>
+      <a mat-button class="nav-link" *ngFor="let link of links" [routerLink]="link.path" 
+        routerLinkActive="nav-active-link"> <!--to reflect the active link via css-->
+        <mat-icon>
+          {{link.icon}}
+        </mat-icon>
+        {{link.title}}
+      </a>
+
+      <a mat-button class="nav-link" routerLink="/upload" routerLinkActive="nav-active-link" *ngIf="showMenu">        
+        <mat-icon>
+          lock
+        </mat-icon>
+        Upload to S3
+      </a>
+
+      <a mat-button class="nav-link" routerLink="/videos" routerLinkActive="nav-active-link" *ngIf="showMenu">        
+        <mat-icon>
+          video_library
+        </mat-icon>
+        Videos on S3
+      </a>      
+    </nav>
+  </mat-sidenav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+    <!-- router result here -->
+  </div>
+</mat-sidenav-container>
